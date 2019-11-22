@@ -8,6 +8,8 @@ services:
       MONGO_INITDB_ROOT_PASSWORD: nymlog
     volumes:
       - db-data:/etc/mongo
+    ports:
+      - 27017:27017
     networks:
       - nymlognet
   nymlog:
