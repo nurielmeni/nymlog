@@ -1,5 +1,15 @@
 version: '3.4'
 services:
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: nymlog
+    volumes:
+      - db-data:/etc/mongo
+    networks:
+      - nymlognet
   nymlog:
     image: nurielmeni/nymlog
     ports:
@@ -12,3 +22,5 @@ services:
       - nymlognet
 networks:
   nymlognet:
+volumes:
+  db-data:

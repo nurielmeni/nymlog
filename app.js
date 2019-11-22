@@ -1,24 +1,25 @@
-var createError = require('http-errors');
-var express = require('express');
-var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+const createError = require('http-errors');
+const express = require('express');
+const path = require('path');
+const cookieParser = require('cookie-parser');
+const logger = require('morgan');
 
 //Import the mongoose module
-var mongoose = require('mongoose');
+const mongoose = require('mongoose');
 //Set up default mongoose connection
-var mongoDB = 'mongodb+srv://nurielmeni:Meni1971@cluster0-0isxr.mongodb.net/test?retryWrites=true&w=majority';
+//const mongoDB = 'mongodb+srv://nurielmeni:Meni1971@cluster0-0isxr.mongodb.net/test?retryWrites=true&w=majority';
+const mongoDB = 'mongodb://mongo:27017/nymlog';
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 //Get the default connection
-var db = mongoose.connection;
+const db = mongoose.connection;
 //Bind connection to error event (to get notification of connection errors)
 db.on('error', console.error.bind(console, 'MongoDB connection error:'));
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var loggerRouter = require('./routes/logger');
+const indexRouter = require('./routes/index');
+const usersRouter = require('./routes/users');
+const loggerRouter = require('./routes/logger');
 
-var app = express();
+const app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
