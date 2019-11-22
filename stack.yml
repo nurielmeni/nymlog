@@ -17,7 +17,7 @@ services:
     environment:
       - PORT=3000
     volumes:
-      - /node/nymlog:./
+      - ./:/node/nymelog
     networks:
       - nymlognet
 networks:
