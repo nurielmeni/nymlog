@@ -12,4 +12,3 @@ services:
       - nymlognet
 networks:
   myprivatenet:
-volumes:
