@@ -1,7 +1,7 @@
 version: '3.4'
 services:
   nymlog:
-    image: node:10-alpine
+    image: nurielmeni/nymlog
     ports:
       - '3000:3000'
     environment:
