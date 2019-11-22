@@ -11,15 +11,15 @@ services:
     networks:
       - nymlognet
   nymlog:
-    image: nurielmeni/nymlog
-    ports:
-      - '3000:3000'
+    user: "node"
+    working_dir: /home/node/app
     environment:
-      - PORT=3000
-    depends_on:
-      - mongo
+      - NODE_ENV=production
     volumes:
-      - ./:/node/nymlog
+      - ./:/home/node/app
+    expose:
+      - "8081"
+    command: "npm start"
     networks:
       - nymlognet
 networks:
