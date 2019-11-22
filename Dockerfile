@@ -6,7 +6,7 @@ USER node
 WORKDIR /home/node/app
 
 # Permissions
-RUN chmod -R node ./
+RUN chown -R node ./
 
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
