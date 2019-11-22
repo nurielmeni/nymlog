@@ -1,12 +1,13 @@
 FROM node:10-alpine
 
-USER node
+
 
 RUN mkdir -p /home/node/app && chown -R node:node /home/node/app
 
 # Create app directory
 WORKDIR /home/node/app
 
+USER node
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 # where available (npm@5+)
