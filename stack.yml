@@ -11,6 +11,7 @@ services:
     networks:
       - nymlognet
   nymlog:
+    image: nurielmeni/nymlog
     user: "node"
     working_dir: /home/node/app
     environment:
