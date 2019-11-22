@@ -11,4 +11,4 @@ services:
     networks:
       - nymlognet
 networks:
-  myprivatenet:
+  nymlognet:
