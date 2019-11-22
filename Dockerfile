@@ -13,7 +13,7 @@ WORKDIR /home/node/app
 COPY package*.json /home/node/app/
 
 # Permissions
-RUN chown -R node /home/node/app
+#RUN chown -R node /home/node/app
 
 RUN npm install
 # If you are building your code for production
