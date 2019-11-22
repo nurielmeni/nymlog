@@ -1,0 +1,15 @@
+version: '3.4'
+services:
+  nymlog:
+    image: node:10-alpine
+    ports:
+      - '3000:3000'
+    environment:
+      - PORT=3000
+    volumes:
+      - ./:/node/nymlog
+    networks:
+      - nymlognet
+networks:
+  myprivatenet:
+volumes:
