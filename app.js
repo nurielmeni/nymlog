@@ -6,9 +6,11 @@ const logger = require('morgan');
 
 //Import the mongoose module
 const mongoose = require('mongoose');
+const mongoUsername = process.env.MONGO_USERNAME || 'admin';
+const mongoPassword = process.env.MONGO_PASSWORD || 'admin';
 //Set up default mongoose connection
 //const mongoDB = 'mongodb+srv://nurielmeni:Meni1971@cluster0-0isxr.mongodb.net/test?retryWrites=true&w=majority';
-const mongoDB = 'mongodb://mongo:27017/nymlog';
+const mongoDB = `mongodb://${mongoUsername}:${mongoPassword}@mongo:27017/nymlog`;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 //Get the default connection
 const db = mongoose.connection;

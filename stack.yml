@@ -18,6 +18,8 @@ services:
     working_dir: /home/node/app
     environment:
       - NODE_ENV=production
+      - MONGO_USERNAME: root
+      - MONGO_PASSWORD: nymlog
     volumes:
       - ./:/home/node/app
     ports:
