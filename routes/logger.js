@@ -5,6 +5,7 @@ const router = express.Router();
 /* GET log message. */
 router.get('/', function(req, res, next) {
     res.send("Recieved: " + req);
+    res.end();
 });
   
 /* POST log message. */
@@ -16,13 +17,13 @@ router.post('/', async (req, res, next) => {
         try {
             const newLog = await log.save();
             res.send(JSON.stringify(newLog));
+            res.end();
         } catch (err) {
             res.status(400).json({ message: err.message });
         }
     } else {
         res.status(400).json({ message: 'Log Errro: no log recieved'});
     }
-    next();
 });
   
 module.exports = router;
