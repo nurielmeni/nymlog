@@ -15,7 +15,7 @@ router.post('/', async (req, res, next) => {
         console.log('Log',log);
         try {
             const newLog = await log.save();
-            res.send.json(newLog);
+            res.send(JSON.stringify(newLog));
         } catch (err) {
             res.status(400).json({ message: err.message });
         }
