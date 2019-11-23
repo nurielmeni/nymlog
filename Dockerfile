@@ -21,6 +21,7 @@ RUN npm install
 
 # Bundle app sources
 ##COPY . .
+RUN chown node:node ./
 USER node
 
 EXPOSE 3000
