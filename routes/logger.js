@@ -9,7 +9,6 @@ router.get('/', function(req, res, next) {
   
 /* POST log message. */
 router.post('/', function(req, res, next) {
-    console.log('Route logger /:', req);
     if (typeof req.body.logs !== 'undefined' && req.body.logs.length > 0) {
         console.log(req.body.logs[0]);
         const log = new Log(req.body.logs[0]);
