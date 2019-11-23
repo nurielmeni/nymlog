@@ -4,8 +4,8 @@ services:
     image: mongo
     restart: always
     environment:
-      MONGO_INITDB_ROOT_USERNAME: "root"
-      MONGO_INITDB_ROOT_PASSWORD: "nymlog"
+      MONGO_INITDB_ROOT_USERNAME: roo
+      MONGO_INITDB_ROOT_PASSWORD: nymlog
     volumes:
       - db-data:/etc/mongo
     ports:
@@ -17,9 +17,9 @@ services:
     user: "node"
     working_dir: /home/node/app
     environment:
-      - NODE_ENV = "production"
-      - MONGO_USERNAME = "root"
-      - MONGO_PASSWORD = "nymlog"
+      - NODE_ENV: production
+      - MONGO_USERNAME: root
+      - MONGO_PASSWORD: nymlog
     volumes:
       - ./:/home/node/app
     ports:
