@@ -15,13 +15,14 @@ router.post('/', async (req, res, next) => {
         console.log('Log',log);
         try {
             const newLog = await log.save();
-            res.status(201).json(newLog);
+            res.send.json(newLog);
         } catch (err) {
             res.status(400).json({ message: err.message });
         }
     } else {
         res.status(400).json({ message: 'Log Errro: no log recieved'});
     }
+    next();
 });
   
 module.exports = router;
