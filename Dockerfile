@@ -20,9 +20,9 @@ RUN npm install
 # RUN npm ci --only=production
 
 # Bundle app sources
-COPY . .
-RUN chown node:node ./
-USER node
+#COPY . .
+#RUN chown node:node ./
+#USER node
 
 EXPOSE 3000
-CMD [ "npm", "start" ]
+#CMD [ "npm", "start" ]

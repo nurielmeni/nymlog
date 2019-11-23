@@ -13,7 +13,7 @@ services:
     networks:
       - nymlognet
   nymlog:
-    image: nurielmeni/nymlog
+    image: node:10-alpine
     user: "node"
     working_dir: /home/node/app
     environment:
