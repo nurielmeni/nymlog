@@ -13,9 +13,13 @@ router.post('/', function(req, res, next) {
         console.log(req.body.logs[0]);
         const log = new Log(req.body.logs[0]);
 
-        log.save((err) => {
-            if (err) res.send(`Log Errro: no log recieved ${err}`);
-        });
+        try {
+            log.save((err) => {
+                if (err) res.send(`Log Errro: no log recieved ${err}`);
+            });
+        } catch (err) {
+            res.send(`Log Errro: no log recieved ${err}`);
+        }
         res.send(`Log Recieved: ${JSON.stringify(req.body.logs[0])}`);
     } else {
         res.send('Log Errro: no log recieved');
