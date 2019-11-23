@@ -22,7 +22,7 @@ RUN npm install
 # Bundle app sources
 ##COPY . .
 RUN chown node:node ./
-USER node
+#USER node
 
 EXPOSE 3000
 CMD [ "npm", "start" ]
