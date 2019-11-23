@@ -6,6 +6,7 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: nymlog
+      MONGO_INITDB_DATABASE: nymlog
     volumes:
       - db-data:/etc/mongo
     ports:
