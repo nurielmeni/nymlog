@@ -8,23 +8,19 @@ router.get('/', function(req, res, next) {
 });
   
 /* POST log message. */
-router.post('/', function(req, res, next) {
+router.post('/', async (req, res, next) => {
     if (typeof req.body.logs !== 'undefined' && req.body.logs.length > 0) {
         console.log(req.body.logs[0]);
         const log = new Log(req.body.logs[0]);
         console.log('Log',log);
         try {
-            log.save((err) => {
-                if (err) res.send(`Log Errro: no log recieved ${err}`);
-                return;
-            });
+            const newLog = await log.save();
+            res.status(201).json(newSubscriber);
         } catch (err) {
-            res.send(`Log Errro: no log recieved ${err}`);
-            return;
+            res.status(400).json({ message: err.message });
         }
-        res.send(`Log Recieved: ${JSON.stringify(req.body.logs[0])}`);
     } else {
-        res.send('Log Errro: no log recieved');
+        res.status(400).json({ message: 'Log Errro: no log recieved'});
     }
 });
   
