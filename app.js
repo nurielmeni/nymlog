@@ -8,9 +8,12 @@ const logger = require('morgan');
 const mongoose = require('mongoose');
 const mongoUsername = process.env.MONGO_USERNAME || 'admin';
 const mongoPassword = process.env.MONGO_PASSWORD || 'admin';
+const mongoServer = process.env.MONGO_SERVER || 'mongo';
+const mongoPort = process.env.MONGO_PORT || '27017';
+const mongoDatabase = process.env.MONGO_DATABASE || 'nymlog';
 //Set up default mongoose connection
 //const mongoDB = 'mongodb+srv://nurielmeni:Meni1971@cluster0-0isxr.mongodb.net/test?retryWrites=true&w=majority';
-const mongoDB = `mongodb://${mongoUsername}:${mongoPassword}@mongo:27017/nymlog`;
+const mongoDB = `mongodb://${mongoUsername}:${mongoPassword}@${mongoServer}:${mongoPort}/${mongoDatabase}`;
 mongoose.connect(mongoDB, { useNewUrlParser: true, useUnifiedTopology: true });
 //Get the default connection
 const db = mongoose.connection;
