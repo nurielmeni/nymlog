@@ -1,4 +1,5 @@
 // use 
+// // ifinit db not set use use db to switch
 // Run this in the container to create the user for the DB
 //use nymlog
 
