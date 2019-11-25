@@ -8,7 +8,7 @@ services:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: nymlog
     volumes:
-      - db-data:/etc/mongo
+      - db-data:/data/db
       - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
     ports:
       - 27017:27017
