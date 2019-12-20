@@ -8,13 +8,12 @@ html
     script(src='https://unpkg.com/loglevel-plugin-remote@^0.6/dist/loglevel-plugin-remote.min.js')
   body
     nav
-      navbar-default  div
-        img:src='/images/nymLogger.png'
+      navbar-default
+        img(src='/images/nymLogger.png' alt='NYMlogger Logo')
         h1 NYM Logger!
-      ul
-        li
-          a Home
-        li
-          a About
-      input
+        ul
+          li
+            a Home
+          li
+            a About
     block content
