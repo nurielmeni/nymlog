@@ -45,6 +45,8 @@ io.on('connection', (socket) => {
   });
 });
 
+const updateConsole = html => io.emit('update console', html);
+
 /**
  * Normalize a port into a number, string, or false.
  */
@@ -105,4 +107,4 @@ function onListening() {
   debug('Listening on ' + bind);
 }
 
-module.exports = io;
+exports = updateConsole;
