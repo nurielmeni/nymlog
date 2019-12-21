@@ -1,7 +1,9 @@
 const express = require('express');
 const Log = require('../models/log');
 const router = express.Router();
-const updateConsole = require('../bin/www');
+const io = require('../bin/www');
+
+const updateConsole = html => io.emit('update console', html);
 
 /* GET log message. */
 router.get('/', function(req, res, next) {
@@ -19,7 +21,7 @@ router.post('/', async (req, res, next) => {
             const newLog = await log.save();
             console.log(updateConsole);
 
-            //updateConsole('<p>Testwith module</p>');
+            updateConsole('<p>Testwith module</p>');
 
             res.send(JSON.stringify(newLog));
             res.end();

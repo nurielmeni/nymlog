@@ -40,14 +40,10 @@ const io = require('socket.io')(server);
 io.on('connection', (socket) => {
   console.log(`[ server.js ] ${socket.id} connected`);
 
-  updateConsole('<h1>Testing...</h1>');
-
   socket.on('disconnect', () => {
     console.log(`[ server.js ] ${socket.id} disconnected`);
   });
 });
-
-const updateConsole = html => io.emit('update console', html);
 
 /**
  * Normalize a port into a number, string, or false.
@@ -109,4 +105,4 @@ function onListening() {
   debug('Listening on ' + bind);
 }
 
-module.exports = updateConsole;
+module.exports = io;
