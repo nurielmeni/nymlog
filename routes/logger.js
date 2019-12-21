@@ -1,7 +1,7 @@
 const express = require('express');
 const Log = require('../models/log');
 const router = express.Router();
-const updateConsole = require('../bin/www')
+const updateConsole = require('../bin/www');
 
 /* GET log message. */
 router.get('/', function(req, res, next) {
