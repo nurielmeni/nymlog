@@ -25,7 +25,7 @@ const getLogEntry = (json) => {
 };
 
 
-document.querySelectorAll('.nym-log', function(elm) {
+document.querySelectorAll('.nym-log', function() {
     this.querySelector('p.stack', function() {
         this.hidden = !this.hidden;
     });
