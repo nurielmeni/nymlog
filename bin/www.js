@@ -45,7 +45,7 @@ io.on('connection', (socket) => {
   });
 });
 
-const updateConsole = html => io.emit('update console', html);
+const updateConsole = json => io.emit('update console', json);
 
 /**
  * Normalize a port into a number, string, or false.
