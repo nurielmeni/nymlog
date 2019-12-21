@@ -5,8 +5,11 @@ const nymConsole = document.getElementById('nym-console');
 
 logger.enableAll();
 
-const logEntry = json => `
-    <div id="${json._id}" class="nym-log">
+const logEntry = (json) => {
+    const logEntry = document.createElement('div');
+    logEntry.id = json._id;
+    logEntry.className = 'nym-log';
+    logEntry.html = `
         <p class="summary">
             <span class="timestamp">${json.timestamp}</span>
             <span class="timestamp">${json.logger}</span>
@@ -14,8 +17,10 @@ const logEntry = json => `
             <span class="timestamp">${json.message}</span>
         </p>
         <p class="stack" style="display: none;">${json.stackTrace}</p>
-    </div>
-`;
+    `;
+
+    return logEntry;
+};
 
 
 document.querySelectorAll('.nym-log', function(elm) {
