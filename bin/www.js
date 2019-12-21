@@ -107,4 +107,4 @@ function onListening() {
   debug('Listening on ' + bind);
 }
 
-exports = updateConsole;
+exports.updateConsole = updateConsole;
