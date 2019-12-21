@@ -19,7 +19,7 @@ router.post('/', async (req, res, next) => {
             const newLog = await log.save();
             console.log(updateConsole);
 
-            updateConsole('<p>Testwith module</p>');
+            //updateConsole('<p>Testwith module</p>');
 
             res.send(JSON.stringify(newLog));
             res.end();
