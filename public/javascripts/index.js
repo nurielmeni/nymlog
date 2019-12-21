@@ -5,7 +5,7 @@ const nymConsole = document.getElementById('nym-console');
 
 logger.enableAll();
 
-const logEntry = (json) => {
+const getLogEntry = (json) => {
     const logEntry = document.createElement('div');
     logEntry.id = json._id;
     logEntry.className = 'nym-log';
@@ -31,5 +31,5 @@ document.querySelectorAll('.nym-log', function(elm) {
 
 socket.on('update console', (json) => {
     console.log('UPDATE Console: ', json);
-    nymConsole.appendChild(logEntry(json));
+    nymConsole.appendChild(getLogEntry(json));
 });
