@@ -9,7 +9,7 @@ const getLogEntry = (json) => {
     const logEntry = document.createElement('div');
     logEntry.id = json._id;
     logEntry.className = 'nym-log';
-    logEntry.html = `
+    logEntry.innerHTML = `
         <p class="summary">
             <span class="timestamp">${json.timestamp}</span>
             <span class="timestamp">${json.logger}</span>
