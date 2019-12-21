@@ -21,9 +21,9 @@ router.post('/', async (req, res, next) => {
             const newLog = await log.save();
             console.log(www.updateConsole());
 
-            www.updateConsole(newLog);
+            www.updateConsole(log);
 
-            res.send(JSON.stringify(newLog));
+            res.send(JSON.stringify(log));
             res.end();
         } catch (err) {
             res.status(400).json({ message: err.message });
