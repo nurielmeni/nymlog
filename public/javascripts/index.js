@@ -6,6 +6,8 @@ const nymConsole = document.getElementById('nym-console');
 logger.enableAll();
 
 const getLogEntry = (json) => {
+    if (!json) return;
+    
     const logEntry = document.createElement('div');
     logEntry.id = json._id;
     logEntry.className = 'nym-log';
