@@ -2,9 +2,16 @@ extends layout
 
 
 block content
-  script(src='/javascripts/index.js')
-  h1= title
-  #container.row-fluid
-    input(type="text").col-xs-12.col-sm-4
+  script(src='/socket.io/socket.io.js')
+  script(src='/javascripts/index.js', defer)
+  section(class="actions")
+    div(class="form-group", style="position: relative; display:inline-block;")
+      input(type="number" id="screen", name="screen", class="form-control", placeholder=" ")
+      div(class="floater")
+    button(class="pure-material-button-contained") OK
+    div(class="form-group", style="position: relative")
+      input(id="search", name="search", class="form-control", placeholder=" ")
+      div(class="floater")
+  section(class="console")
 
 

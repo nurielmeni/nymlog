@@ -10,11 +10,14 @@ html
   body
     nav
       navbar-default
-        img(src='/images/nymLogger.png' alt='NYMlogger Logo')
-        h1 NYM Logger!
         ul
           li
             a Home
           li
             a About
-    block content
+        div(class="brand")
+          img(src='/images/nymLogger.png' alt='NYMlogger Logo')
+          h1 NYM Logger!
+    main(class="page-wrapper")
+      block content
+    footer

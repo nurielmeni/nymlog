@@ -14,7 +14,9 @@
     "loglevel": "^1.6.4",
     "mongoose": "^5.7.8",
     "morgan": "~1.9.1",
-    "pug": "^2.0.4"
+    "pug": "^2.0.4",
+    "showdown": "^1.9.1",
+    "socket.io": "^2.3.0"
   },
   "devDependencies": {
     "nodemon": "^1.19.4"

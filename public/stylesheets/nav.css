@@ -1,11 +1,23 @@
 nav {
     width: 100vw;
-    background-color: #D6EFFF;
+    background-color: #126d11;
+    color: #262e26
 }
-nav ul {
-    margin: 0;
-    padding: 0;
+
+navbar-default {
     display: flex;
+    justify-content: space-between;
+}
+
+nav ul, nav .brand {
+    margin: 0;
+    padding: 0 1.7vh;
+    display: flex;
+}
+
+nav .brand img {
+    height: 40px;
+    padding: 10px;
 }
 
 nav ul button {
@@ -14,20 +26,20 @@ nav ul button {
   
 nav li {
     list-style-type: none;
-    margin: 0 2vw;
-    font-size: 3vh;
+    margin: 0 5px;
+    font-size: 2.7vh;
 }
 
 nav li a {
     text-decoration: none;
     
     color: black;
-    padding: 2vw;
-    font-family: monospace;
+    line-height: 6.7vh;
+    padding: 1.7vh;
 }
 
 nav li a:hover{
-    background-color: #C6E9FF;
+    background-color: #25ca23;
 }
 
 @media only screen and (max-width: 600px) {
