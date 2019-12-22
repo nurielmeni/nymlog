@@ -46,7 +46,7 @@ section.console span.timestamp {
 }
 
 section.console span.message {
-  font-style: #d3d3d3;
+  color: #d3d3d3;
 }
 
 section.console span.level.debug {
