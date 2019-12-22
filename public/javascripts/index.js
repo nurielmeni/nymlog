@@ -14,15 +14,16 @@ const getLogEntry = (json) => {
     logEntry.innerHTML = `
         <p class="summary">
             <span class="timestamp">${json.timestamp}</span>
-            <span class="timestamp">${json.logger}</span>
-            <span class="timestamp">${json.level}</span>
-            <span class="timestamp">${json.message}</span>
+            <span class="logger">${json.logger}</span>
+            <span class="level ${json.level}
+            ">[${json.level}]</span>
+            <span class="message">${json.message}</span>
         </p>
         <p class="stack" hidden>${json.stacktrace}</p>
     `;
 
     logEntry.addEventListener('click', function() {
-        toggleVisibility(this.querySelector('p.stack'));
+        toggleVisibility(this.querySelector('p.stacktrace'));
     });
     return logEntry;
 };

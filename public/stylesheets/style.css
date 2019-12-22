@@ -34,6 +34,25 @@ section.console {
   color: #ddff98;
 }
 
+section.console p.stacktrace {
+  margin-left: 10px;
+  background-color: #272727;
+  padding: 3px;
+  margin-top: -8px;
+}
+
+section.console p.level.debug {
+  color: orange;
+}
+
+section.console p.level.info {
+  color: #6bb0ff;
+}
+
+section.console p.level.error {
+  color: #ff0000;
+}
+
 
 /********** MATERIAL CSS ***********/
 /********** BUTTON ***********/
