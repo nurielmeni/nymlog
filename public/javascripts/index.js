@@ -21,15 +21,15 @@ const getLogEntry = (json) => {
         <p class="stack" style="display: none;">${json.stackTrace}</p>
     `;
 
+    logEntry.addEventListener('click', function() {
+        toggleVisibility(this.querySelector('p.stack'));
+    });
     return logEntry;
 };
 
-
-document.querySelectorAll('.nym-log', function() {
-    this.querySelector('p.stack', function() {
-        this.hidden = !this.hidden;
-    });
-});
+const toggleVisibility = (elm) => {
+    elm.hidden = !elm.hidden;
+}
 
 socket.on('update console', (json) => {
     if (json) {
