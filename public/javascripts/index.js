@@ -18,7 +18,7 @@ const getLogEntry = (json) => {
             <span class="timestamp">${json.level}</span>
             <span class="timestamp">${json.message}</span>
         </p>
-        <p class="stack" style="display: none;">${json.stackTrace}</p>
+        <p class="stack" hidden>${json.stackTrace}</p>
     `;
 
     logEntry.addEventListener('click', function() {
