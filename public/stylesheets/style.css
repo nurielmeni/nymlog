@@ -41,15 +41,15 @@ section.console p.stacktrace {
   margin-top: -8px;
 }
 
-section.console p.level.debug {
+section.console span.level.debug {
   color: orange;
 }
 
-section.console p.level.info {
+section.console span.level.info {
   color: #6bb0ff;
 }
 
-section.console p.level.error {
+section.console span.level.error {
   color: #ff0000;
 }
 

@@ -19,7 +19,7 @@ const getLogEntry = (json) => {
             ">[${json.level}]</span>
             <span class="message">${json.message}</span>
         </p>
-        <p class="stack" hidden>${json.stacktrace}</p>
+        <p class="stacktrace" hidden>${json.stacktrace}</p>
     `;
 
     logEntry.addEventListener('click', function() {
