@@ -7,4 +7,9 @@ router.get('/', auth, function(req, res, next) {
   res.render('index', { title: 'MYNedia Logger' });
 });
 
+/* GET login page. */
+router.get('/login', auth, function(req, res, next) {
+  res.render('login', { title: 'Login - MYNedia Logger' });
+});
+
 module.exports = router;
