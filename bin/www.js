@@ -3,10 +3,16 @@
 /**
  * Module dependencies.
  */
-
+const config = require("config");
 const app = require('../app');
 const debug = require('debug')('logger:server');
 const http = require('http');
+
+//use config module to get the privatekey, if no private key set, end the application
+if (!config.get("myprivatekey")) {
+  console.error("FATAL ERROR: myprivatekey is not defined.");
+  process.exit(1);
+}
 
 /**
  * Get port from environment and store in Express.
