@@ -17,8 +17,11 @@ const loginHandler = () => {
         },
         body: JSON.stringify(data)
     }).then(res => {
-        if (res.status === 400)
-        console.log("Request complete! response:", res);
+        if (res.status === 400) {
+            const errorMessage = document.querySelector('section.login-form p.error-message');
+            errorMessage.innerText = res.statusText;
+        }
+        console.log("Request complete! response:");
     });
 };
 
