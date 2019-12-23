@@ -41,7 +41,9 @@ router.post('/login', async (req, res) => {
 
   //find an existing user
   let user = await User.findOne({ email: req.body.email });
+  console.log(user);
   let password = await bcrypt.hash(user.password, 10);
+  console.log('password: ', password);
   if (user && password === user.password) {
     const token = user.generateAuthToken();
     res.header('x-auth-token', token).send({
