@@ -5,8 +5,8 @@ const loginHandler = () => {
     const loginPassword = document.querySelector('section.login-form input#password');
 
     let data = {
-        email: loginEmail.vlaue,
-        password: loginPassword.vlaue
+        email: loginEmail.value,
+        password: loginPassword.value
     };
 
     fetch("/users/login", {
