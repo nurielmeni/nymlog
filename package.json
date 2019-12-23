@@ -8,6 +8,7 @@
   },
   "dependencies": {
     "bcrypt": "^3.0.7",
+    "bufferutil": "^4.0.1",
     "config": "^3.2.4",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
@@ -20,7 +21,8 @@
     "morgan": "~1.9.1",
     "pug": "^2.0.4",
     "showdown": "^1.9.1",
-    "socket.io": "^2.3.0"
+    "socket.io": "^2.3.0",
+    "utf-8-validate": "^5.0.2"
   },
   "devDependencies": {
     "nodemon": "^1.19.4"
