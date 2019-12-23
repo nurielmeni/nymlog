@@ -3,6 +3,8 @@ const bcrypt = require('bcryptjs');
 const { User, validate, validateLogin } = require('../models/user.js');
 const express = require('express');
 const router = express.Router();
+const config = require('config');
+
 
 router.get('/current', auth, async (req, res) => {
   const user = await User.findById(req.user._id).select('-password');
