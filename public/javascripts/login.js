@@ -17,6 +17,7 @@ const loginHandler = () => {
         },
         body: JSON.stringify(data)
     }).then(res => {
+        if (res.status === 400)
         console.log("Request complete! response:", res);
     });
 };
