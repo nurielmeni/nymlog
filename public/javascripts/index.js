@@ -2,7 +2,6 @@ const logger = log.noConflict();
 const sender = remote.apply(logger, {format:remote.json});
 const socket = io();
 const nymConsole = document.getElementById('nym-console');
-const loginBtn = document.getElementById('login-button');
 
 logger.enableAll();
 
@@ -39,22 +38,3 @@ socket.on('update console', (json) => {
         nymConsole.appendChild(getLogEntry(json));
     }
 });
-
-const loginHandler = () => {
-    const loginEmail = document.querySelector('section.login-form input#email');
-    const loginPassword = document.querySelector('section.login-form input#password');
-
-    let data = {
-        email: loginEmail.vlaue,
-        password: loginPassword.vlaue
-    };
-
-    fetch("/users/login", {
-        method: "POST", 
-        body: JSON.stringify(data)
-    }).then(res => {
-        console.log("Request complete! response:", res);
-    });
-};
-
-loginBtn.addEventListener('click', loginHandler);
