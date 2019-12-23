@@ -52,10 +52,10 @@ router.post('/login', async (req, res) => {
       name: user.name,
       email: user.email
     });
+  } else {
+    console.log('Valid: ', valid);
+    return res.status(400).send('Could not authenticate: email or password not valid.');
   }
-
-  console.log('Valid: ', valid);
-  return res.status(400).send('Could not authenticate: email or password not valid.');
 });
 
 module.exports = router;
