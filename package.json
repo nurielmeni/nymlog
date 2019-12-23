@@ -7,7 +7,7 @@
     "devstart": "nodemon ./bin/www --inspect"
   },
   "dependencies": {
-    "bcrypt": "^3.0.7",
+    "bcryptjs": "^2.4.3",
     "bufferutil": "^4.0.1",
     "config": "^3.2.4",
     "cookie-parser": "~1.4.4",
