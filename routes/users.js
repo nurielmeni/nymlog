@@ -42,7 +42,7 @@ router.post('/login', async (req, res) => {
   //find an existing user
   let user = await User.findOne({ email: req.body.email });
   if (!user) {
-    res.statusText('Could not authenticate: email or password not valid.');
+    res.statusMessage('Could not authenticate: email or password not valid.');
     return res.status(400).end();
   }
   console.log(user);
@@ -58,7 +58,7 @@ router.post('/login', async (req, res) => {
     });
   } else {
     console.log('Valid: ', valid);
-    res.statusText('Could not authenticate: email or password not valid.');
+    res.statusMessage('Could not authenticate: email or password not valid.');
     return res.status(400).end();
   }
 });
