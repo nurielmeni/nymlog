@@ -1,6 +1,6 @@
 const auth = require('../middleware/auth');
 const bcrypt = require('bcryptjs');
-const { User, validate } = require('../models/user.js');
+const { User, validate, validateLogin } = require('../models/user.js');
 const express = require('express');
 const router = express.Router();
 
@@ -32,6 +32,26 @@ router.post('/', async (req, res) => {
     name: user.name,
     email: user.email
   });
+});
+
+router.post('/login', async (req, res) => {
+  // validate the request body first
+  const { error } = validateLogin(req.body);
+  if (error) return res.status(400).send(error.details[0].message);
+
+  //find an existing user
+  let user = await User.findOne({ email: req.body.email });
+  let password = await bcrypt.hash(user.password, 10);
+  if (user && password === user.password) {
+    const token = user.generateAuthToken();
+    res.header('x-auth-token', token).send({
+      _id: user._id,
+      name: user.name,
+      email: user.email
+    });
+  }
+
+  return res.status(400).send('Could not authenticate: email or password not valid.');
 });
 
 module.exports = router;
