@@ -37,7 +37,10 @@ router.post('/', async (req, res) => {
 router.post('/login', async (req, res) => {
   // validate the request body first
   const { error } = validateLogin(req.body);
-  if (error) return res.status(400).send(error.details[0].message);
+  if (error) {
+    res.statusMessage = error.details[0].message;
+    return res.status(400).end();
+  }
 
   //find an existing user
   let user = await User.findOne({ email: req.body.email });
