@@ -23,7 +23,7 @@ router.post('/', async (req, res) => {
     password: req.body.password,
     email: req.body.email
   });
-  user.password = await bcrypt.hash(user.password, 10);
+  user.password = await bcrypt.hash(user.password, config.get('myprivatekey'));
   await user.save();
 
   const token = user.generateAuthToken();
@@ -42,7 +42,7 @@ router.post('/login', async (req, res) => {
   //find an existing user
   let user = await User.findOne({ email: req.body.email });
   console.log(user);
-  let password = await bcrypt.compare(user.password, 10, (err, res) => {
+  let password = await bcrypt.compare(user.password, config.get('myprivatekey'), (err, res) => {
     console.log('err, res: ', err, res);
     if (!err) {
       const token = user.generateAuthToken();
