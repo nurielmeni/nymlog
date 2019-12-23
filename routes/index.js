@@ -8,7 +8,7 @@ router.get('/', auth, function(req, res, next) {
 });
 
 /* GET login page. */
-router.get('/login', auth, function(req, res, next) {
+router.get('/login', function(req, res, next) {
   res.render('login', { title: 'Login - MYNedia Logger' });
 });
 
