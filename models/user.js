@@ -51,8 +51,8 @@ function validateUser(user) {
   //function to validate user 
 function validateLogin(user) {
     const schema = {
-      email: Joi.required().email(),
-      password: Joi.required()
+      email: Joi.string().required().email(),
+      password: Joi.string().required()
     };
   
     return Joi.validate(user, schema);
