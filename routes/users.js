@@ -42,6 +42,8 @@ router.post('/login', async (req, res) => {
   //find an existing user
   let user = await User.findOne({ email: req.body.email });
   console.log(user);
+  console.log('Pass compare: ', req.body.password, user.password);
+  
   let valid = bcrypt.compareSync(req.body.password, user.password);
   if (valid) {
     const token = user.generateAuthToken();
@@ -52,7 +54,7 @@ router.post('/login', async (req, res) => {
     });
   }
 
-  console.log('Password: ', password);
+  console.log('Valid: ', valid);
   return res.status(400).send('Could not authenticate: email or password not valid.');
 });
 
