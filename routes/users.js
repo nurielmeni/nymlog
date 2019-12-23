@@ -41,6 +41,9 @@ router.post('/login', async (req, res) => {
 
   //find an existing user
   let user = await User.findOne({ email: req.body.email });
+  if (!user) {
+    return res.status(400).send('Could not authenticate: email or password not valid.');
+  }
   console.log(user);
   console.log('Pass compare: ', req.body.password, user.password);
   
