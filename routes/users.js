@@ -55,7 +55,7 @@ router.post('/login', async (req, res) => {
   if (valid) {
     const token = user.generateAuthToken();
     res.cookie('access_token', token, { signed: true , maxAge: 300000 });
-    res.header('x-auth-token', token).send({
+    res.header('x-auth-token', token).json({
       _id: user._id,
       name: user.name,
       email: user.email
