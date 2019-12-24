@@ -24,6 +24,9 @@ const loginHandler = () => {
         if (res.status === 400) {
             errorMessage.innerText = res.statusText;
         } else if (res.status === 200) {
+            res.json().then((json) => {
+                console.log('JSON', json)
+            });
             window.localStorage.setItem('user', res.headers.get('x-auth-token'));
         }
         console.log("Request complete! response:");

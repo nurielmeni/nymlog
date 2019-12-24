@@ -9,16 +9,17 @@ html
     script(src='https://unpkg.com/loglevel/dist/loglevel.min.js')
     script(src='https://unpkg.com/loglevel-plugin-remote@^0.6/dist/loglevel-plugin-remote.min.js')
   body
-    nav
-      navbar-default
-        ul
-          li
-            a(href="/") Home
-          li
-            a(href="/about") About
-        div(class="brand")
-          img(src='/images/nymLogger.png' alt='NYMlogger Logo')
-          h1 NYM Logger!
-    main(class="page-wrapper")
-      block content
-    footer
+    div(id="app")
+      nav
+        navbar-default
+          ul
+            li
+              a(href="/") Home
+            li
+              a(href="/about") About
+          div(class="brand")
+            img(src='/images/nymLogger.png' alt='NYMlogger Logo')
+            h1 NYM Logger!
+      main(class="page-wrapper")
+        block content
+      footer
