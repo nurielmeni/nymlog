@@ -54,6 +54,7 @@ router.post('/login', async (req, res) => {
   let valid = bcrypt.compareSync(req.body.password, user.password);
   if (valid) {
     const token = user.generateAuthToken();
+    res.cookie('access_token', token, { signed: true , maxAge: 300000 });
     res.header('x-auth-token', token).send(`${user.name}, Logged in successfully`);
   } else {
     res.statusMessage = 'Could not authenticate: email or password not valid.';
