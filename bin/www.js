@@ -4,9 +4,9 @@
  * Module dependencies.
  */
 const config = require("config");
-const app = require('../app');
-const debug = require('debug')('logger:server');
-const http = require('http');
+const app = require("../app");
+const debug = require("debug")("logger:server");
+const http = require("http");
 
 //use config module to get the privatekey, if no private key set, end the application
 if (!config.get("myprivatekey")) {
@@ -18,8 +18,8 @@ if (!config.get("myprivatekey")) {
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || '3000');
-app.set('port', port);
+const port = normalizePort(process.env.PORT || "3000");
+app.set("port", port);
 
 /**
  * Create HTTP server.
@@ -32,26 +32,26 @@ const server = http.createServer(app);
  */
 
 server.listen(port);
-server.on('error', onError);
-server.on('listening', onListening);
+server.on("error", onError);
+server.on("listening", onListening);
 
 /**
  * Create the websocket object
  */
-const io = require('socket.io')(server);
+const io = require("socket.io")(server);
 
 /**
  * Socket events
  */
-io.on('connection', (socket) => {
+io.on("connection", socket => {
   console.log(`[ server.js ] ${socket.id} connected`);
 
-  socket.on('disconnect', () => {
+  socket.on("disconnect", () => {
     console.log(`[ server.js ] ${socket.id} disconnected`);
   });
 });
 
-const updateConsole = json => io.emit('update console', json);
+const updateConsole = json => io.emit("updateConsole", json);
 
 /**
  * Normalize a port into a number, string, or false.
@@ -78,22 +78,20 @@ function normalizePort(val) {
  */
 
 function onError(error) {
-  if (error.syscall !== 'listen') {
+  if (error.syscall !== "listen") {
     throw error;
   }
 
-  var bind = typeof port === 'string'
-    ? 'Pipe ' + port
-    : 'Port ' + port;
+  var bind = typeof port === "string" ? "Pipe " + port : "Port " + port;
 
   // handle specific listen errors with friendly messages
   switch (error.code) {
-    case 'EACCES':
-      console.error(bind + ' requires elevated privileges');
+    case "EACCES":
+      console.error(bind + " requires elevated privileges");
       process.exit(1);
       break;
-    case 'EADDRINUSE':
-      console.error(bind + ' is already in use');
+    case "EADDRINUSE":
+      console.error(bind + " is already in use");
       process.exit(1);
       break;
     default:
@@ -107,10 +105,8 @@ function onError(error) {
 
 function onListening() {
   var addr = server.address();
-  var bind = typeof addr === 'string'
-    ? 'pipe ' + addr
-    : 'port ' + addr.port;
-  debug('Listening on ' + bind);
+  var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
+  debug("Listening on " + bind);
 }
 
 exports.updateConsole = updateConsole;
