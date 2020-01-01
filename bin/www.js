@@ -38,7 +38,7 @@ server.on("listening", onListening);
 /**
  * Create the websocket object
  */
-const io = require("socket.io")(server);
+const io = require("socket.io")(server, { origins: "*:*" });
 
 /**
  * Socket events
