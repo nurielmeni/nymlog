@@ -41,7 +41,7 @@ server.on("listening", onListening);
 const io = require("socket.io")(server, { origins: "*:*" });
 io.set(
   "origins",
-  "http://104.248.28.94:* http://104.248.28.94:8080 http://localhost http://localhost:*"
+  "http://104.248.28.94:* http://104.248.28.94:8080 http://localhost http://localhost:80 http://localhost:*"
 );
 
 /**
