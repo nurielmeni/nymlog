@@ -38,11 +38,9 @@ server.on("listening", onListening);
 /**
  * Create the websocket object
  */
-const io = require("socket.io")(server, { origins: "*:*" });
-io.set(
-  "origins",
-  "http://104.248.28.94:* http://104.248.28.94:8080 http://localhost http://localhost:80 http://localhost:*"
-);
+const allowedOrigins =
+  "http://104.248.28.94:* http://104.248.28.94:8080 http://localhost http://localhost:80 http://localhost:*";
+const io = require("socket.io")(server, { origins: allowedOrigins });
 
 /**
  * Socket events
