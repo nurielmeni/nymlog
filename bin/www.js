@@ -7,7 +7,8 @@ const config = require("config");
 const app = require("../app");
 const debug = require("debug")("logger:server");
 //const http = require("http");
-const http = require("http");
+const https = require("https");
+const fs = require("fs");
 
 //use config module to get the privatekey, if no private key set, end the application
 if (!config.get("myprivatekey")) {
@@ -20,14 +21,20 @@ if (!config.get("myprivatekey")) {
  */
 
 //const portHttp = normalizePort(process.env.PORT || "3000");
-const port = normalizePort(process.env.PORT || "3000");
+const port = normalizePort(process.env.PORT || "4000");
 app.set("port", port);
 
 /**
  * Create HTTP server.
  */
 
-const server = http.createServer(app);
+const server = https.createServer(
+  {
+    key: fs.readFileSync("nginx/ssl/nginx-selfsigned.key"),
+    cert: fs.readFileSync("nginx/ssl/nginx-selfsigned.crt")
+  },
+  app
+);
 
 /**
  * Listen on provided port, on all network interfaces.
