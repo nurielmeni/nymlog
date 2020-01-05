@@ -7,6 +7,7 @@ const config = require("config");
 const app = require("../app");
 const debug = require("debug")("logger:server");
 const http = require("http");
+const https = require("https");
 
 //use config module to get the privatekey, if no private key set, end the application
 if (!config.get("myprivatekey")) {
@@ -18,28 +19,34 @@ if (!config.get("myprivatekey")) {
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || "3000");
-app.set("port", port);
+const portHttp = normalizePort(process.env.PORT || "3000");
+const portHttps = normalizePort(process.env.PORTSSL || "4000");
+//app.set("port", port);
 
 /**
  * Create HTTP server.
  */
 
-const server = http.createServer(app);
+const serverHttp = http.createServer(app).listen(portHttp);
+const serverHttps = https.createServer(app).listen(portHttps);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-server.listen(port);
-server.on("error", onError);
-server.on("listening", onListening);
+serverHttp.listen(portHttp);
+serverHttp.on("error", onError);
+serverHttp.on("listening", onListening.bind(serverHttp));
+
+serverHttps.listen(portHttps);
+serverHttps.on("error", onError);
+serverHttps.on("listening", onListening.bind(serverHttps));
 
 /**
  * Create the websocket object
  */
 const allowedOrigins =
-  "http://104.248.28.94:* http://104.248.28.94:8080 http://localhost http://localhost:80 http://localhost:*";
+  "http://104.248.28.94:* http://104.248.28.94:8080 http://localhost http://localhost:80 http://localhost:* https://104.248.28.94:* https://104.248.28.94:8080 https://localhost https://localhost:80 https://localhost:*";
 const io = require("socket.io")(server, { origins: allowedOrigins });
 
 /**
@@ -105,8 +112,8 @@ function onError(error) {
  * Event listener for HTTP server "listening" event.
  */
 
-function onListening() {
-  var addr = server.address();
+function onListeningHttp(srv) {
+  var addr = srv.address();
   var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
   debug("Listening on " + bind);
 }
