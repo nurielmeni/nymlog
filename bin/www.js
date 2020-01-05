@@ -112,7 +112,7 @@ function onError(error) {
  * Event listener for HTTP server "listening" event.
  */
 
-function onListeningHttp(srv) {
+function onListening(srv) {
   var addr = srv.address();
   var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
   debug("Listening on " + bind);
