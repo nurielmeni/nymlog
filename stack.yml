@@ -1,4 +1,4 @@
-version: '3.4'
+version: "3.4"
 services:
   mongo:
     image: mongo
@@ -15,9 +15,7 @@ services:
     networks:
       - nymlognet
   nymlog:
-    image: node:10-alpine
-    user: "node"
-    working_dir: /home/node/app
+    image: nymlog
     depends_on:
       - mongo
     links:
@@ -30,10 +28,18 @@ services:
     volumes:
       - ./:/home/node/app
     ports:
-      - 3000:3000
-    command: "npm start"
+      - 8081:3000
+      - 2443:4000
+    command: "npm run start"
     networks:
       - nymlognet
+  vue-nymlog:
+    image: vue-nymlog
+    environment:
+      NODE_ENV: production
+    ports:
+      - 8080:80
+      - 1443:443
 networks:
   nymlognet:
 volumes:
