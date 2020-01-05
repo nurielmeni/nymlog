@@ -20,34 +20,29 @@ if (!config.get("myprivatekey")) {
  */
 
 //const portHttp = normalizePort(process.env.PORT || "3000");
-const portHttps = normalizePort(process.env.PORTSSL || "4000");
-app.set("port", portHttps);
+const port = normalizePort(process.env.PORT || "4000");
+app.set("port", port);
 
 /**
  * Create HTTP server.
  */
 
-//const serverHttp = http.createServer(app);
-const serverHttps = https.createServer(app);
+const server = https.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-// serverHttp.listen(portHttp);
-// serverHttp.on("error", onError);
-// serverHttp.on("listening", onListening.bind(serverHttp));
-
-serverHttps.listen(portHttps);
-serverHttps.on("error", onError);
-serverHttps.on("listening", onListening);
+server.listen(port);
+server.on("error", onError);
+server.on("listening", onListening);
 
 /**
  * Create the websocket object
  */
 const allowedOrigins =
   "http://104.248.28.94:* http://104.248.28.94:8080 http://localhost http://localhost:80 http://localhost:* https://104.248.28.94:* https://104.248.28.94:8080 https://localhost https://localhost:80 https://localhost:*";
-const io = require("socket.io")(serverHttps, { origins: allowedOrigins });
+const io = require("socket.io")(server, { origins: allowedOrigins });
 
 /**
  * Socket events
@@ -113,7 +108,7 @@ function onError(error) {
  */
 
 function onListening() {
-  var addr = serverHttps.address();
+  var addr = server.address();
   var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
   debug("Listening on " + bind);
 }
