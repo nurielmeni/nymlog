@@ -6,7 +6,7 @@
 const config = require("config");
 const app = require("../app");
 const debug = require("debug")("logger:server");
-const http = require("http");
+//const http = require("http");
 const https = require("https");
 
 //use config module to get the privatekey, if no private key set, end the application
@@ -19,24 +19,24 @@ if (!config.get("myprivatekey")) {
  * Get port from environment and store in Express.
  */
 
-const portHttp = normalizePort(process.env.PORT || "3000");
+//const portHttp = normalizePort(process.env.PORT || "3000");
 const portHttps = normalizePort(process.env.PORTSSL || "4000");
-//app.set("port", port);
+app.set("port", portHttps);
 
 /**
  * Create HTTP server.
  */
 
-const serverHttp = http.createServer(app).listen(portHttp);
-const serverHttps = https.createServer(app).listen(portHttps);
+//const serverHttp = http.createServer(app);
+const serverHttps = https.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
 
-serverHttp.listen(portHttp);
-serverHttp.on("error", onError);
-serverHttp.on("listening", onListening.bind(serverHttp));
+// serverHttp.listen(portHttp);
+// serverHttp.on("error", onError);
+// serverHttp.on("listening", onListening.bind(serverHttp));
 
 serverHttps.listen(portHttps);
 serverHttps.on("error", onError);
@@ -47,7 +47,7 @@ serverHttps.on("listening", onListening.bind(serverHttps));
  */
 const allowedOrigins =
   "http://104.248.28.94:* http://104.248.28.94:8080 http://localhost http://localhost:80 http://localhost:* https://104.248.28.94:* https://104.248.28.94:8080 https://localhost https://localhost:80 https://localhost:*";
-const io = require("socket.io")(server, { origins: allowedOrigins });
+const io = require("socket.io")(serverHttps, { origins: allowedOrigins });
 
 /**
  * Socket events
