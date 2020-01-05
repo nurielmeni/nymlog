@@ -6,7 +6,7 @@
 const config = require("config");
 const app = require("../app");
 const debug = require("debug")("logger:server");
-const http = require("https");
+const https = require("https");
 
 //use config module to get the privatekey, if no private key set, end the application
 if (!config.get("myprivatekey")) {
