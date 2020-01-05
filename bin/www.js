@@ -6,7 +6,7 @@
 const config = require("config");
 const app = require("../app");
 const debug = require("debug")("logger:server");
-const https = require("https");
+const http = require("http");
 
 //use config module to get the privatekey, if no private key set, end the application
 if (!config.get("myprivatekey")) {
@@ -18,14 +18,14 @@ if (!config.get("myprivatekey")) {
  * Get port from environment and store in Express.
  */
 
-const port = normalizePort(process.env.PORT || "443");
+const port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
 
 /**
  * Create HTTP server.
  */
 
-const server = https.createServer(app);
+const server = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
