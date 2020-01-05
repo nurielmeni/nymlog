@@ -40,7 +40,7 @@ const serverHttps = https.createServer(app);
 
 serverHttps.listen(portHttps);
 serverHttps.on("error", onError);
-serverHttps.on("listening", onListening.bind(serverHttps));
+serverHttps.on("listening", onListening);
 
 /**
  * Create the websocket object
@@ -112,8 +112,8 @@ function onError(error) {
  * Event listener for HTTP server "listening" event.
  */
 
-function onListening(srv) {
-  var addr = srv.address();
+function onListening() {
+  var addr = serverHttps.address();
   var bind = typeof addr === "string" ? "pipe " + addr : "port " + addr.port;
   debug("Listening on " + bind);
 }
