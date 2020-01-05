@@ -7,7 +7,7 @@ const config = require("config");
 const app = require("../app");
 const debug = require("debug")("logger:server");
 //const http = require("http");
-const https = require("https");
+const http = require("http");
 
 //use config module to get the privatekey, if no private key set, end the application
 if (!config.get("myprivatekey")) {
@@ -20,7 +20,7 @@ if (!config.get("myprivatekey")) {
  */
 
 //const portHttp = normalizePort(process.env.PORT || "3000");
-const port = normalizePort(process.env.PORT || "4000");
+const port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
 
 /**
