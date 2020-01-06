@@ -4,7 +4,7 @@ const Log = require("../models/log");
 const router = express.Router();
 const cors = require("cors");
 const corsOptions = {
-  origin: "http://d.nymedia.co.il",
+  origin: "https://d.nymedia.co.il",
   optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
 };
 /* GET log message. */
