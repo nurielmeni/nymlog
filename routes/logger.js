@@ -2,7 +2,6 @@ const www = require("../bin/www");
 const express = require("express");
 const Log = require("../models/log");
 const router = express.Router();
-const cors = require("cors");
 
 /* GET log message. */
 router.get("/", function(req, res, next) {
@@ -11,7 +10,7 @@ router.get("/", function(req, res, next) {
 });
 
 /* POST log message. */
-router.post("/", cors(), async (req, res, next) => {
+router.post("/", async (req, res, next) => {
   if (typeof req.body.logs !== "undefined" && req.body.logs.length > 0) {
     //console.log(req.body.logs[0]);
     const log = new Log(req.body.logs[0]);
