@@ -34,7 +34,7 @@ app.set("view engine", "pug");
 
 app.options("*", cors());
 app.use(logger("dev"));
-//app.use(bodyParser.json());
+app.use(bodyParser.json());
 app.use(cookieParser("NYMedia cookie secret"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
