@@ -15,7 +15,7 @@ router.get("/current", cors(corsOptions), auth, async (req, res) => {
   res.send(user);
 });
 
-router.post("/", corscorsOptions(), async (req, res) => {
+router.post("/", cors(corsOptions), async (req, res) => {
   // validate the request body first
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);

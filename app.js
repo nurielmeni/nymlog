@@ -31,7 +31,6 @@ app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "pug");
 
 app.use(logger("dev"));
-app.use(express.text());
 app.use(cookieParser("NYMedia cookie secret"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
