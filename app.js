@@ -4,7 +4,7 @@ const path = require("path");
 const cookieParser = require("cookie-parser");
 const logger = require("morgan");
 const cors = require("cors");
-//const bodyParser = require('body-parser');
+const bodyParser = require("body-parser");
 
 //Import the mongoose module
 const mongoose = require("mongoose");
