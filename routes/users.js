@@ -3,19 +3,13 @@ const bcrypt = require("bcryptjs");
 const { User, validate, validateLogin } = require("../models/user.js");
 const express = require("express");
 const router = express.Router();
-const cors = require("cors");
 
-const corsOptions = {
-  origin: "http://d.nymedia.co.il",
-  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
-};
-
-router.get("/current", cors(corsOptions), auth, async (req, res) => {
+router.get("/current", auth, async (req, res) => {
   const user = await User.findById(req.user._id).select("-password");
   res.send(user);
 });
 
-router.post("/", cors(corsOptions), async (req, res) => {
+router.post("/", async (req, res) => {
   // validate the request body first
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
@@ -40,7 +34,7 @@ router.post("/", cors(corsOptions), async (req, res) => {
   });
 });
 
-router.post("/login", cors(corsOptions), async (req, res) => {
+router.post("/login", async (req, res) => {
   // validate the request body first
   console.log(req.body);
   const { error } = validateLogin(req.body);
