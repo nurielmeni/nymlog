@@ -3,7 +3,10 @@ const express = require("express");
 const Log = require("../models/log");
 const router = express.Router();
 const cors = require("cors");
-
+const corsOptions = {
+  origin: "http://d.nymedia.co.il",
+  optionsSuccessStatus: 200 // some legacy browsers (IE11, various SmartTVs) choke on 204
+};
 /* GET log message. */
 router.get("/", function(req, res, next) {
   res.send("Recieved: " + req);
@@ -11,7 +14,7 @@ router.get("/", function(req, res, next) {
 });
 
 /* POST log message. */
-router.post("/", cors(), async (req, res, next) => {
+router.post("/", cors(corsOptions), async (req, res, next) => {
   if (typeof req.body.logs !== "undefined" && req.body.logs.length > 0) {
     //console.log(req.body.logs[0]);
     const log = new Log(req.body.logs[0]);
