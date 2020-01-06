@@ -3,13 +3,14 @@ const bcrypt = require("bcryptjs");
 const { User, validate, validateLogin } = require("../models/user.js");
 const express = require("express");
 const router = express.Router();
+const cors = require("cors");
 
-router.get("/current", auth, async (req, res) => {
+router.get("/current", cors(), auth, async (req, res) => {
   const user = await User.findById(req.user._id).select("-password");
   res.send(user);
 });
 
-router.post("/", async (req, res) => {
+router.post("/", cors(), async (req, res) => {
   // validate the request body first
   const { error } = validate(req.body);
   if (error) return res.status(400).send(error.details[0].message);
@@ -34,7 +35,7 @@ router.post("/", async (req, res) => {
   });
 });
 
-router.post("/login", async (req, res) => {
+router.post("/login", cors(), async (req, res) => {
   // validate the request body first
   console.log(req.body);
   const { error } = validateLogin(req.body);
