@@ -13,7 +13,7 @@ router.get("/", function(req, res, next) {
 router.post("/", async (req, res, next) => {
   if (typeof req.body.logs !== "undefined" && Array.isArray(req.body.logs)) {
     console.log("logs: ", req.body.logs);
-    req.body.logs.forEach(logItem => {
+    await req.body.logs.forEach(async logItem => {
       const log = new Log(logItem);
       console.log("Log", log);
 
