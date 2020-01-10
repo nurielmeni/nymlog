@@ -27,11 +27,14 @@ router.post("/", async (req, res) => {
   await user.save();
 
   const token = user.generateAuthToken();
-  res.header("x-auth-token", token).send({
-    _id: user._id,
-    name: user.name,
-    email: user.email
-  });
+  res
+    .header("Access-Control-Allow-Origin: *")
+    .header("x-auth-token", token)
+    .send({
+      _id: user._id,
+      name: user.name,
+      email: user.email
+    });
 });
 
 router.post("/login", async (req, res) => {
