@@ -29,7 +29,7 @@ services:
       - ./:/home/node/app
     ports:
       - 8081:3000
-      - 2443:4000
+      - 443:4000
     command: "npm run start"
     networks:
       - nymlognet
