@@ -27,11 +27,14 @@ router.post("/", async (req, res) => {
   await user.save();
 
   const token = user.generateAuthToken();
-  res.header("x-auth-token", token).send({
-    _id: user._id,
-    name: user.name,
-    email: user.email
-  });
+  res
+    .header("Access-Control-Allow-Origin: *")
+    .header("x-auth-token", token)
+    .send({
+      _id: user._id,
+      name: user.name,
+      email: user.email
+    });
 });
 
 router.post("/login", async (req, res) => {
@@ -55,6 +58,7 @@ router.post("/login", async (req, res) => {
   let valid = bcrypt.compareSync(req.body.password, user.password);
   if (valid) {
     const token = user.generateAuthToken();
+    res.header("Access-Control-Expose-Headers", "x-auth-token");
     res.cookie("access_token", token, { signed: true, maxAge: 300000 });
     res.header("x-auth-token", token).json({
       _id: user._id,

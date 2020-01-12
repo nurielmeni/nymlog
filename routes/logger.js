@@ -11,24 +11,26 @@ router.get("/", function(req, res, next) {
 
 /* POST log message. */
 router.post("/", async (req, res, next) => {
-  if (typeof req.body.logs !== "undefined" && req.body.logs.length > 0) {
-    //console.log(req.body.logs[0]);
-    const log = new Log(req.body.logs[0]);
+  if (typeof req.body.logs !== "undefined" && Array.isArray(req.body.logs)) {
+    console.log("logs: ", req.body.logs);
+    await req.body.logs.forEach(async logItem => {
+      const log = new Log(logItem);
+      console.log("Log", log);
 
-    //console.log('Log',log);
-    //console.log('UpdateConsole: ', www.updateConsole);
+      //console.log('UpdateConsole: ', www.updateConsole);
 
-    try {
-      const newLog = await log.save();
-      //console.log(www.updateConsole());
+      try {
+        const newLog = await log.save();
+        //console.log(www.updateConsole());
 
-      www.updateConsole(log);
+        www.updateConsole(log);
 
-      //res.send(JSON.stringify(log));
-      res.end();
-    } catch (err) {
-      res.status(400).json({ message: err.message });
-    }
+        //res.send(JSON.stringify(log));
+        res.end();
+      } catch (err) {
+        res.status(400).json({ message: err.message });
+      }
+    });
   } else {
     res.status(400).json({ message: "Log Errro: no log recieved" });
   }
