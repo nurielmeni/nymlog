@@ -48,7 +48,7 @@ server.on("listening", onListening);
  * Create the websocket object
  */
 const allowedOrigins =
-  "http://104.248.28.94:* http://104.248.28.94:8080 http://localhost http://localhost:80 http://localhost:* https://104.248.28.94:* https://104.248.28.94:8080 https://localhost https://localhost:80 https://localhost:*";
+  "https://logs.nymedia.co.il https://logs.nymedia.co.il:* https://localhost https://localhost:* https://console.nymedia.co.il https://console.nymedia.co.il:*";
 const io = require("socket.io")(server, { origins: allowedOrigins });
 
 /**
