@@ -62,11 +62,30 @@ io.on("connection", socket => {
   });
 
   socket.on("screenRoom", screen => {
-    console.log(`[${socket.id}] join screen room: ${screen}`);
+    socket.leave(socket.room);
+    console.log(`[${socket.id}] leave screen room: ${socket.room}`);
+    socket.join(getScreenRoom(screen));
+    console.log(`[${socket.id}] join screen room: ${getScreenRoom(screen)}`);
   });
 });
 
-const updateConsole = json => io.emit("updateConsole", json);
+const updateConsole = json => {
+  if (json.screen > 0) {
+    console.log("Emmiting message to: ", getScreenRoom(json.screen));
+    io.to(getScreenRoom(json.screen)).emit("updateConsole", json);
+  } else {
+    console.log("Emmiting message to: all listeners");
+    io.broadcast.emit("updateConsole", json);
+  }
+};
+
+/**
+ * Returns the room string
+ * @param {screen number} screen
+ */
+function getScreenRoom(screen) {
+  return "screen-" + screen;
+}
 
 /**
  * Normalize a port into a number, string, or false.
