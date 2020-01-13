@@ -60,6 +60,10 @@ io.on("connection", socket => {
   socket.on("disconnect", () => {
     console.log(`[ server.js ] ${socket.id} disconnected`);
   });
+
+  socket.on("screenRoom", screen => {
+    console.log(`[${socket.id}] join screen room: ${screen}`);
+  });
 });
 
 const updateConsole = json => io.emit("updateConsole", json);
