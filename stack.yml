@@ -28,7 +28,6 @@ services:
     volumes:
       - ./:/home/node/app
     ports:
-      - 8081:3000
       - 443:4000
     command: "npm run start"
     networks:
@@ -38,8 +37,7 @@ services:
     environment:
       NODE_ENV: production
     ports:
-      - 8080:80
-      - 1443:443
+      - 4001:4001
 networks:
   nymlognet:
 volumes:
