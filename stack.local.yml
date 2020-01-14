@@ -1,0 +1,16 @@
+version: "3.4"
+services:
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: nymlog
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: nymlog
+    volumes:
+      - mongo-data:/data/db
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - 27017:27017
+volumes:
+  mongo-data:
