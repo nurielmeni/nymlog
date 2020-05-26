@@ -1,0 +1,88 @@
+version: '3'
+
+services:
+
+  mongo:
+    image: mongo
+    restart: always
+    environment:
+      MONGO_INITDB_DATABASE: nymlog
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: nymlog
+    volumes:
+      - mongo-data:/data/db
+      - ./docker-entrypoint-initdb.d:/docker-entrypoint-initdb.d
+    ports:
+      - 27017:27017
+    networks:
+      - app-network
+ 
+  nodejs:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: nodejs    
+    container_name: nodejs
+    restart: unless-stopped
+    environment:
+      NODE_ENV: production
+      MONGO_DB: nymlog
+      MONGO_USERNAME: root
+      MONGO_PASSWORD: nymlog
+      PORT: 8080
+    depends_on:
+      - mongo
+    networks:
+      - app-network
+
+  webserver:
+    image: nginx:mainline-alpine
+    container_name: webserver
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - web-root:/var/www/html
+      - ./nginx-conf:/etc/nginx/conf.d
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+      - dhparam:/etc/ssl/certs
+    depends_on:
+      - nodejs
+    networks:
+      - app-network
+
+  certbot:
+    image: certbot/certbot
+    container_name: certbot
+    volumes:
+      - certbot-etc:/etc/letsencrypt
+      - certbot-var:/var/lib/letsencrypt
+      - web-root:/var/www/html
+    depends_on:
+      - webserver
+    networks:
+      - app-network
+    command: certonly --webroot --webroot-path=/var/www/html --email nurielmeni@gmail.com --agree-tos --no-eff-email --force-renewal -d logs.nymedia.co.il
+
+volumes:
+  certbot-etc:
+  certbot-var:
+  mongo-data:
+  web-root:
+    driver: local
+    driver_opts:
+      type: none
+      device: /node/nymlog/public/
+      o: bind
+  dhparam:
+    driver: local
+    driver_opts:
+      type: none
+      device: /node/nymlog/dhparam/
+      o: bind
+
+networks:
+  app-network:
+    driver: bridge
