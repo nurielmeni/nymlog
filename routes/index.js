@@ -1,15 +1,15 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const auth = require('../middleware/auth');
+const auth = require("../middleware/auth");
 
 /* GET home page. */
-router.get('/', auth, function(req, res, next) {
-  res.render('index', { title: 'MYNedia Logger' });
+router.get("/", auth, function (req, res, next) {
+  res.render("index.html", { title: "MYNedia Logger" });
 });
 
 /* GET login page. */
-router.get('/login', function(req, res, next) {
-  res.render('login', { title: 'Login - MYNedia Logger' });
+router.get("/login", function (req, res, next) {
+  res.render("login", { title: "Login - MYNedia Logger" });
 });
 
 module.exports = router;
