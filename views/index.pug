@@ -1,17 +1,6 @@
-extends layout
+extends vueLayout
 
 
 block content
-  script(src='/socket.io/socket.io.js')
-  script(src='/javascripts/index.js', defer)
-  section(class="actions")
-    div(class="form-group", style="position: relative; display:inline-block;")
-      input(type="number" id="screen", name="screen", class="form-control", placeholder=" ")
-      div(class="floater")
-    button(class="pure-material-button-contained") OK
-    div(class="form-group", style="position: relative")
-      input(id="search", name="search", class="form-control", placeholder=" ")
-      div(class="floater")
-  section(id="nym-console" class="console")
-
-
+  script(src='/js/chunk-vendors.a48547b6.js')
+  script(src='/js/app.8b356f49.js')
