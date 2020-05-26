@@ -38,6 +38,8 @@ services:
       NODE_ENV: production
     ports:
       - 4001:4001
+    networks:
+      - nymlognet
 networks:
   nymlognet:
 volumes:
