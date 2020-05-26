@@ -4,7 +4,7 @@ const auth = require("../middleware/auth");
 
 /* GET home page. */
 router.get("/", auth, function (req, res, next) {
-  res.render("index.html", { title: "MYNedia Logger" });
+  res.render("index", { title: "MYNedia Logger" });
 });
 
 /* GET login page. */
